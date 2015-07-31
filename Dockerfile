@@ -2,10 +2,20 @@ FROM ubuntu:14.04
 MAINTAINER Chris Rose <offline@offby1.net>
 
 # ensure the base image has what we need
-RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -yqq install build-essential python-pip software-properties-common openjdk-7-jdk && add-apt-repository ppa:fkrull/deadsnakes && apt-get update
+RUN apt-get update && \
+    DEBIAN_FRONTEND=noninteractive apt-get -yqq install \
+    build-essential python-pip \
+    software-properties-common openjdk-7-jdk && \
+    add-apt-repository ppa:fkrull/deadsnakes && \
+    apt-get update
 
 # install legacy python versions
-RUN DEBIAN_FRONTEND=noninteractive apt-get -yqq install python2.5 python2.6 python2.7 python3.1 python3.2 python3.3 python3.4
+RUN DEBIAN_FRONTEND=noninteractive apt-get -yqq install \
+    python2.5-dev python2.6-dev python2.7-dev python3.1-dev python3.2-dev python3.3-dev python3.4-dev
+
+# install other commonly needed libraries for building Python extensions
+RUN DEBIAN_FRONTEND=noninteractive apt-get -yqq install \
+    freetds-dev libffi-dev libicu-dev libldap2-dev libmemcached-dev libxml2-dev libxmlsec1-dev libxslt1-dev
 
 # add Jython installer
 # ADD jython-installer-2.7-b4.jar /tmp/
