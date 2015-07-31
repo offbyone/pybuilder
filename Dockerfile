@@ -19,7 +19,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -yqq install \
 
 # add Jython installer
 # ADD jython-installer-2.7-b4.jar /tmp/
-ADD http://search.maven.org/remotecontent?filepath=org/python/jython-installer/2.7-b4/jython-installer-2.7-b4.jar /tmp/jython-installer-2.7-b4.jar
+ADD http://search.maven.org/remotecontent?filepath=org/python/jython-installer/2.7.0/jython-installer-2.7.0.jar /tmp/jython-installer-2.7.0.jar
 
 # install pypy versions
 # ADD pypy-2.5.0-linux64.tar.bz2 /opt/
@@ -31,8 +31,8 @@ ADD https://bitbucket.org/pypy/pypy/downloads/pypy-2.5.0-linux64.tar.bz2 /tmp/
 RUN cd /opt && tar -xf /tmp/pypy-2.5.0-linux64.tar.bz2
 
 # install Jython version
-RUN java -jar /tmp/jython-installer-2.7-b4.jar -d /opt/jython-2.7-b4 -s -t all
-ENV PATH /opt/jython-2.7-b4/bin:$PATH
+RUN java -jar /tmp/jython-installer-2.7.0.jar -d /opt/jython-2.7 -s -t all
+ENV PATH /opt/jython-2.7/bin:$PATH
 # bootstrap jython JAR cache
 RUN jython
 
